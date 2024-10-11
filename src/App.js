@@ -19,11 +19,12 @@ function App() {
     }, []);
 
   function handleSubmit(e) {
-    const id = crypto.randomUUID();
-    const update = [...reminders, {id, title, description}];
-    setReminders(update);
-    console.log(update);
-    localStorage.setItem('reminders', JSON.stringify(update));
+    if(title !== ""){
+      const update = [...reminders, {title, description}];
+      setReminders(update);
+      console.log(update);
+      localStorage.setItem('reminders', JSON.stringify(update));
+    }
   }
 
   function handleDelete(index){
@@ -41,10 +42,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Reminders</h1>
+      <h1>Re-mined</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='name'>Title: </label>
+        <div className='input-block'>
+          <label htmlFor='name'><b>Title</b></label>
           <input 
             type='text'
             id='title'
@@ -54,7 +55,7 @@ function App() {
         </div>
 
         <div>
-          <label htmlFor='description'>Description: </label>
+          <label htmlFor='description'><b>Description</b></label>
           <input 
             type='text'
             id='description'
@@ -63,7 +64,7 @@ function App() {
           />
         </div>
 
-        <button type='submit'>Add</button>
+        <button type='submit'><b>Add</b></button>
       </form>
 
       <h2>Your Reminders</h2>
@@ -76,7 +77,7 @@ function App() {
             onDelete = {() => handleDelete(index)}
           />))
       }
-      {(reminders.length == 0) && <p>No reminders added</p>}
+      {(reminders.length === 0) && <p>No reminders added</p>}
     </div>
   );
 }

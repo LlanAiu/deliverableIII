@@ -1,11 +1,17 @@
+import './Reminder.css';
 
 export default function Reminder({id, title, description, onDelete}){
     
     return (
-        <div>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <button onClick={onDelete}></button>
+        <div className='remind-block'>
+            <div className='reminder-text'>
+                <div className='inline'>
+                    <h2 className='title-text'>{title}</h2>
+                    <p className='description-text'>{description}</p>
+                </div>
+                <button className='reminder-delete' onClick={onDelete}><b>Remove</b></button>
+            </div>
+
         </div>
     );
 }
